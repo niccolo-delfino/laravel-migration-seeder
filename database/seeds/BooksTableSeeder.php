@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use APP\Book;
+use Faker\Generator as Faker;
+use App\Book;
 
 class BooksTableSeeder extends Seeder
 {
@@ -10,8 +11,15 @@ class BooksTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+      for ($i = 0; $i < 10; $i++){
+        $newBook = new Book();
+        $newBook->titolo = $faker->sentence(3);
+        $newBook->autore = $faker->lastName();
+        $newBook->genere = $faker->word();
+
+        $newBook->save();
+      }
     }
 }
